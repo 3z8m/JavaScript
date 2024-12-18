@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>NSCM金属箔</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/serif.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+        <!-- Three.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section data-background-color="#2d2d2d" data-transition="fade">
+                    <h1>金属箔事業</h1>
+                    <br>
+                    <p>金属箔応用商品事業部 金属箔製造部</p>
+                </section>
+                
+                <section data-transition="convex">
+                    <h3>金属箔工場所在地</h3>
+                    <img src="img/seitetsusho.png" />
+                </section>
+
+                <section data-transition="convex">
+                    <h3>ステンレス素材プロセス</h3>
+                    <img src="img/streel_process.png" />
+                </section>
+
+                <section data-transition="convex">
+                    <h3>ステンレス箔プロセス</h3>
+                    <img src="img/foil_process.png" />
+                </section>
+                
+                <section data-background-color="#f9f9f9" data-transition="convex">
+                    <h3>工場レイアウト</h3>
+                    <br>
+                    <div class="r-stack">
+                        <img
+                            class="fragment fade-out"
+                            data-fragment-index="0"
+                            src="img/F1.png"
+                        />
+                        <img
+                            class="fragment current-visible"
+                            data-fragment-index="0"
+                            src="img/F2.png"
+                        />
+                      </div>
+                </section>
+
+                <section data-background-color="#f9f9f9" data-transition="convex">
+                    <h3>工場レイアウト</h3>
+                    <div id="threejs-container"></div>
+                    <script src="./scr/box.js"></script>
+                </section>
+                
+                <section data-transition="convex">
+                    <h3>サプライチェーン</h3>
+                    <img src="img/supply.png" />
+                </section>
+
+                <section data-transition="convex">
+                    <h3>金属箔商品</h3>
+                    <img src="img/products.png" />
+                </section>
+                
+                <section data-transition="convex">
+                    <h3>当社商品の特徴</h3>
+                    <ul>
+                        <li>高板厚精度・高平坦性</li>
+                        <li>低介在物</li>
+                        <li>Milk White仕上</li>
+                    </ul>
+                </section>
+
+                <section data-background-color="#2d2d2d" data-transition="zoom">
+                    <h2>Q&A</h2>
+                    <p>Please ask your questions.</p>
+                </section>
+                
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+        
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+                controls: true,     // ナビゲーションコントロールを表示
+                progress: true,     // プログレスバーを表示
+                slideNumber: true,  // スライド
+                hash: true,         // URLにハッシュを追加
+
+                // Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
