@@ -1,0 +1,105 @@
+<%- include('../header') %>
+
+<!-- css, javascriputはpulicフォルダに配置 -->
+<link rel="stylesheet" href="/stylesheets/style_destination.css">
+
+<!-- 日付（main.js）-->
+<h2 id="show_time">日時</h2>
+
+<!-- テーブルを2列に -->
+<div class="main">
+    <div class="row-1">
+        <table class="table table-sm">  <!-- table-smで高さのpaddingを半分に -->
+            <tr>
+                <th></th>        
+                <th>行先</th>
+                <th>弁当</th>
+            </tr>
+            <% for (var obj of content1) { %>
+            <tr>
+                <td><button style="background-color:<%= obj.present %>;" class="custom-size"
+                    onclick="location.href='/destination/edit?id=<%= obj.id %>'"><font size="5"><%= obj.name %></font></button></td>
+                <td><font size="4"><%= obj.destination %></font></td>
+                <td><font size="4"><%= obj.lunch %></font></td>
+            </tr>
+            <% } %>
+        </table>
+    </div>
+    <div class="row-2">
+        <table class="table table-sm">
+            <tr>
+                <th></th>        
+                <th>行先</th>
+                <th>弁当</th>
+            </tr>
+            <% for (var obj of content2) { %>
+            <tr>
+                <td><button style="background-color:<%= obj.present %>;" class="custom-size"
+                    onclick="location.href='/destination/edit?id=<%= obj.id %>'"><font size="5"><%= obj.name %></font></button></td>
+                <td><font size="4"><%= obj.destination %></font></td>
+                <td><font size="4"><%= obj.lunch %></font></td>
+            </tr>
+            <% } %>
+        </table>
+    </div>
+    <div class="row-3">
+        <table class="table table-sm">
+            <tr>
+                <th></th>        
+                <th>行先</th>
+                <th>弁当</th>
+            </tr>
+            <% for (var obj of content3) { %>
+            <tr>
+                <td><button style="background-color:<%= obj.present %>;" class="custom-size"
+                    onclick="location.href='/destination/edit?id=<%= obj.id %>'"><font size="5"><%= obj.name %></font></button></td>
+                <td><font size="4"><%= obj.destination %></font></td>
+                <td><font size="4"><%= obj.lunch %></font></td>
+            </tr>
+            <% } %>
+        </table>
+    </div>
+    <div class="row-4">
+        <table class="table table-sm">
+            <tr>
+                <th></th>        
+                <th>行先</th>
+                <th>弁当</th>
+            </tr>
+            <% for (var obj of content4) { %>
+            <tr>
+                <td><button style="background-color:<%= obj.present %>;" class="custom-size"
+                    onclick="location.href='/destination/edit?id=<%= obj.id %>'"><font size="5"><%= obj.name %></font></button></td>
+                <td><font size="4"><%= obj.destination %></font></td>
+                <td><font size="4"><%= obj.lunch %></font></td>
+            </tr>
+            <% } %>
+        </table>
+        <br><br>
+        <input type="button" class="custom-size" style="background-color:darkkhaki; border: none;" onclick="location.href='/destination/lunch_num'" value="注文数"/>
+    </div>
+</div>    
+
+
+
+<!-- 日時表示 -->
+<script>
+    function showClock() {
+        let nowTime = new Date();
+        let nowYear = nowTime.getFullYear();
+        let nowMonth = nowTime.getMonth() +1;
+        let nowDay = nowTime.getDate();            
+        let nowHour = nowTime.getHours();
+        let nowMin  = nowTime.getMinutes();
+        let msg = nowYear + "年" + nowMonth + "月" + nowDay + "日　" + nowHour + "時" +nowMin + "分";
+        document.getElementById("show_time").innerHTML = msg;
+    };
+    setInterval('showClock()',1000);   // 10秒ごとに更新
+</script>
+
+<!-- 60秒ごとにページをリロード -->
+ <script>
+    setInterval(() => {
+        location.reload();
+    }, 60000);
+ </script>

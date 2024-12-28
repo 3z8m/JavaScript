@@ -1,0 +1,58 @@
+<%- include('../header') %>
+
+<!-- css, javascriputはpulicフォルダに配置 -->
+<link rel="stylesheet" href="/stylesheets/style_destination.css">
+
+<br><br>
+<h2 style="text-align: left;">弁当注文数</h2>
+<br>
+<table id="myTable" class="table table-sm" style="table-layout: fixed; text-align: center; font-size:x-large;">
+    <tr>
+        <th></th>
+        <th>G : 銀柳</th>
+        <th>Gm : 銀柳ミニ</th>
+        <th>T : 徳山</th>
+        <th>Tm : 徳山ミニ</th>
+        <th>To : 徳山おかず</th>
+        <th>S : その他</th>
+    </tr>
+    <% for (var obj of lunch_mu) { %>
+    <tr>
+        <td>μ事務所</td>
+        <td><%= obj.lunch_G %></td>
+        <td><%= obj.lunch_Gm %></td>
+        <td><%= obj.lunch_T %></td>
+        <td><%= obj.lunch_Tm %></td>
+        <td><%= obj.lunch_To %></td>
+        <td><%= obj.lunch_S %></td>
+    </tr>
+    <% } %>
+    <% for (var obj of lunch_3F) { %>
+    <tr>
+        <td>3F事務所</td>
+        <td><%= obj.lunch_G %></td>
+        <td><%= obj.lunch_Gm %></td>
+        <td><%= obj.lunch_T %></td>
+        <td><%= obj.lunch_Tm %></td>
+        <td><%= obj.lunch_To %></td>
+        <td><%= obj.lunch_S %></td>
+    </tr>
+    <% } %>
+</table>
+
+<br>
+<input type="button" class="custom-size" style="background-color:black; color: white; border: none;" onclick="location.href='/destination/'" value="戻る"/>
+
+<!-- テーブル内のゼロを空欄に置換 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const table = document.getElementById("myTable");
+    const cells = table.getElementsByTagName("td");
+
+    for (let cell of cells) {
+        if (cell.textContent === "0") {
+        cell.textContent = "";
+        }
+    }
+    });
+</script>

@@ -1,0 +1,21 @@
+<!--
+css,javascriptファイルは"public"以下のフォルダに配置。
+パスは"public"の下から記述
+-->
+
+<%- include('../header') %>
+<br>
+<script type="importmap">
+    {
+        "imports": {
+            "three": "/javascripts/build/three.module.js",
+            "three/addons/": "/javascripts/script/jsm/"
+        }
+    }
+</script>
+
+<script type="module" src="/javascripts/script/scr_three_coil.js"></script>
+
+<div id="coil_401" title = <%= data_401 %>></div>
+<div id="coil_309" title = <%= data_309 %>></div>
+

@@ -1,0 +1,18 @@
+<!--
+css,javascriptファイルは"public"以下のフォルダに配置。
+パスは"public"の下から記述
+-->
+
+<%- include('../header') %>
+<br>
+
+<script type="importmap">
+    {
+        "imports": {
+            "three": "/javascripts/build/three.module.js",
+            "three/addons/": "/javascripts/script/jsm/"
+        }
+    }
+</script>
+
+<script type="module" src="/javascripts/script/scr_three_move.js"></script>

@@ -1,0 +1,45 @@
+<%- include('header') %>
+
+<h1 class="mt-3 mb-3"><%= title %></h1>
+
+<!-- hakusys に送信(post) -->
+
+<!--
+<form method="post" action="/hakusys">
+    <div class="form-group">
+        <label for="msg">置場コード</label>
+        <input type="text" id="msg" name="msg" class="form-control">
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary">
+    </div>
+</form>
+
+<hr>
+-->
+
+
+<table class="table">
+    <thead>
+        <tr>            
+            <th>コイル番号</th>
+            <th>コイル分割番号</th>
+            <th>鋼種コード</th>
+            <th>置場コード</th>
+            <th>ステータス</th>
+            <th>レコード更新日時分秒</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (let i in data) { %>
+        <tr>
+            <td><%= data[i][0] %></td>
+            <td><%= data[i][1] %></td>
+            <td><%= data[i][2] %></td>
+            <td><%= data[i][3] %></td>
+            <td><%= data[i][4] %></td>
+            <td><%= data[i][5] %></td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>

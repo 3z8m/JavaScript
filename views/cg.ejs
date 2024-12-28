@@ -1,0 +1,33 @@
+<%- include('header') %>
+
+<style>
+    a {
+        color: white;
+    }
+
+    /* ボタンを同じ幅で揃える */
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 200px;         /* 最大に合わせる⇒ fit-content */
+    }
+</style>
+
+<h1 class="mt-3 mb-3"><%= title %></h1>
+
+<div class="wrapper">
+    <a class="btn btn-secondary" href="/three_fps" role="button">金属箔工場 FPS</a>
+    <a class="btn btn-secondary" href="/three_hikariworks" role="button">製鉄所</a>
+    <a class="btn btn-secondary" href="/three_coil" role="button">工場内コイル</a>
+    <a class="btn btn-secondary" href="/babylon_mill" role="button">第1工場 センサ</a>
+    <a class="btn btn-secondary" href="/three_move" role="button">工場見学</a>
+    <a class="btn btn-secondary" href="/three_steelplant" role="button">製鋼工程</a>
+    <a class="btn btn-secondary" href="/p5_rolling" role="button">形状制御</a>
+    <!--
+    <a class="btn btn-secondary" href="/three_cubetextures" role="button">六面写真</a>
+    -->
+    <a class="btn btn-secondary" href="/three_steelcode" role="button">鋼種一覧</a>
+</div>
+
+</form>

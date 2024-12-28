@@ -1,0 +1,110 @@
+<!--
+    リアルタイムストリーミングデータ向け Chart.js プラグイン
+    https://nagix.github.io/chartjs-plugin-streaming/latest/ja/
+-->
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@1.27.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@2.0.0"></script>    
+    -->
+    <script src="/javascripts/lib/Chart.min.js"></script>
+    <script src="/javascripts/lib/luxon.min.js"></script>
+    <script src="/javascripts/lib/chartjs-adapter-luxon.js"></script>
+    <script src="/javascripts/lib/chartjs-plugin-streaming.min.js"></script>
+
+</head>
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        const config = {
+            type: 'line',
+            data: {
+                datasets: [
+                {
+                    label: 'データセット 1',
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    borderDash: [8, 4],
+                    fill: true,
+                    data: []
+                },
+                {
+                    label: 'データセット 2',
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgb(54, 162, 235)',
+                    cubicInterpolationMode: 'monotone',
+                    fill: true,
+                    data: []
+                }
+                ]
+            },
+            options: {
+                plugins: {
+                    streaming: {
+                        duration: 10000      // グラフの表示時間 [ms]
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'realtime',
+                        realtime: {
+                            delay: 2000,                    // グラフの端でも線が続くようにする
+                            onRefresh: chart => {           // コールバック関数で定期的に呼び出す
+                                chart.data.datasets.forEach(dataset => {
+                                    dataset.data.push({
+                                        x: Date.now(),
+                                        y: latestArduinoData // Arduinoからの最新データを使用
+                                    });
+                                });
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: "時間",
+                            font: {
+                                size: 20
+                            }
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: "温度",
+                            font: {
+                                size: 20
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+
+        let latestArduinoData = 0;
+
+        // WebSocket接続を確立
+        const socket = new WebSocket('ws://localhost:8080');
+
+        socket.onmessage = function(event) {
+            latestArduinoData = parseFloat(event.data); // Arduinoからのデータを更新
+        };
+
+    </script>
+</body>
+</html>

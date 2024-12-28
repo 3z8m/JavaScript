@@ -1,0 +1,15 @@
+<%- include('../header') %>
+
+<h1 class="mt-3 mb-3"><%= title %></h1>
+
+<table class="table">
+    <% for (var obj of content) { %>
+    <tr>
+        <th><%= obj.id %></th>
+        <td><%= obj.name %></td>
+        <td><a href="/users/edit/<%= obj.id %>">編集</a></td>
+        <td><a href="/users/delete/<%= obj.id %>">削除</a></td>
+    </tr>
+    <% } %>
+</table>
+
