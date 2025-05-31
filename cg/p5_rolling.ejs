@@ -1,0 +1,203 @@
+<%- include('../header') %>
+
+<!-- ================================================== 
+    p5ライブラリ 
+    css,javascriptファイルは"public"以下のフォルダに配置。
+    パスは"public"の下から記述
+================================================== -->
+<script type="module" src="/javascripts/p5/p5.min.js"></script>
+
+
+<!-- ==================================================
+描画モジュール 
+=================================================== -->
+<style>
+    input[type=radio] {
+        margin-top: 10px;       /* ラジオボタンの上にスペース*/
+        margin-left: 15px;      /* ラジオボタンの左にスペース */
+    }
+</style>
+
+
+<script>
+    let x;
+    let z;
+    let d;                  // BUR径
+    let radio;              // BUR表示
+    let slider_y;           // IMRシフト
+
+    function setup() {
+        createCanvas(windowWidth, windowHeight *3/4, WEBGL);
+
+        // スライダー作成（IMRシフト，形状変化）
+        slider_y = createSlider(-100, 100, 0);
+        // slider_y.position(100, windowHeight *3/4 +50);
+
+        // ラジオボタン作成（BUR 表示/非表示）
+        radio = createRadio();
+        radio.option("BUR");
+        radio.option("非表示");
+        radio.selected("BUR");
+    }
+
+    function draw() {
+
+        background(256);
+        normalMaterial()
+
+        // 環境光
+        ambientLight(150, 150, 150);        // 0~256
+
+        // 方向性ライトの色を白色に、照らす方向を上手前からにする
+        const v = createVector(0, -1, 1);
+        directionalLight(255, 255, 255, v);
+
+        //ドラッグでカメラ動かす
+        orbitControl();
+
+        scale(0.3);                 // 図形をX倍に
+        translate(0, 50, -300);  // 座標移動
+        rotateX(radians(-90));      //-90度回転
+
+        //平面（入側形状）
+        push();
+        translate(-350, 0, 0);    // 座標移動
+        plane(700, 500);
+        pop();
+
+        // 形状変化する板
+        sheet_shape()
+
+        // WR
+        wr(50);                     // 上
+        wr(-50);                    // 下
+
+        // IMR
+        imr(100, -130);             // 左上
+        imr(-100, -130);            // 右上
+        rotateZ(radians(180));      // Z軸で反転
+        imr(-100, 130);             // 右下
+        imr(100, 130);              // 左下
+
+        // BUR
+        bur(-300, -230, 150);       // A軸
+        bur(   0, -280, 110);       // B軸
+        bur( 300, -230, 150);       // C軸
+        bur( 300,  230, 150);       // D軸
+        bur(   0,  280, 110);       // E軸
+        bur(-300,  230, 150);       // D軸
+    }
+
+    // WR
+    function wr(z) {
+        push();                 // 座標を保存
+        translate(0, 0, z);
+        cylinder(50, 500);
+        pop();                  // 座標を復元
+    }
+
+    // IMR
+    function imr(x, z) {
+        push();                         // 座標を保存
+        sl_y =slider_y.value();         // スライダー位置の値を取り出す
+        translate(x, 100 + sl_y, z);
+
+        fill(180);                      // グレーに塗る
+        cylinder(80, 500);              // 円柱を描画
+
+        let x1, y1, z1;                 //座標
+        let length = 200;               // 長さ
+        let radius1 = 40;               // 上面
+        let radius2 = 80;               // 下面
+
+        translate(0, -350, 0);
+        
+        //上面の作成
+        fill(130);                      // グレーに塗る
+        beginShape(TRIANGLE_FAN);
+        y1 = -length / 2;
+        vertex(0, y1, 0);
+
+        for(let deg = 0; deg <= 360; deg = deg + 10) {
+            x1 = cos(radians(deg)) * radius1;
+            z1 = sin(radians(deg)) * radius1;
+            vertex(x1, y1, z1);
+        }
+        endShape();
+
+        //底面の作成
+        beginShape(TRIANGLE_FAN);
+        y1 = length / 2;
+        vertex(0, y1, 0);
+        for(let deg = 0; deg <= 360; deg = deg + 10) {
+            x1 = cos(radians(deg)) * radius2;
+            z1 = sin(radians(deg)) * radius2;
+            vertex(x1, y1, z1);
+        }
+        endShape();
+
+        //側面の作成
+        beginShape(TRIANGLE_STRIP);
+        for(let deg =0; deg <= 360; deg = deg + 5) {
+            x1 = cos(radians(deg)) * radius1;
+            y1 = -length / 2;
+            z1 = sin(radians(deg)) * radius1;
+            vertex(x1, y1, z1);
+
+            x1 = cos(radians(deg)) * radius2;
+            y1 = length / 2;
+            z1 = sin(radians(deg)) * radius2;
+            vertex(x1, y1, z1);
+        }
+        endShape();
+        pop();              // 座標を復元
+    }
+
+    // 形状変化する板
+    function sheet_shape() {
+        push();
+        scale(2.5);                 // 図形をX倍に
+        rotateX(radians(90));       // X軸で90度回転
+        translate(0, 0, -100);
+
+        sa = slider_y.value();       // スライダー位置の値を取り出す
+
+        // 波打ちの振幅（左右対称）
+        let a = [];
+        a[0] = a[4] = 10 * Math.pow((0.005 * sa - 0.5), 4);
+        a[1] = a[3] = 2 * Math.pow((0.005 * sa - 0.5), 4);
+        a[2] = 10 * Math.pow((-0.005 * sa - 0.5), 4);
+
+        let z = [0, 50, 100, 150, 200];
+
+        fill(0, 256, 0, 150);       // 塗りつぶしの色、透明度
+
+        for (let i = 0; i < z.length -1; i++) {
+            beginShape(TRIANGLE_STRIP);
+            for (let x = 0; x < 300; x += 5) {
+                let y0 = sin(x * 0.1) * a[i];
+                vertex(x, y0, z[i]);
+                let y1 = sin(x * 0.1) * a[i+1];
+                vertex(x, y1, z[i+1]);
+            }
+            endShape();
+        }
+        pop();
+    }
+
+    // BUR
+    function bur(x, z, d) {
+        if (radio.value() === "BUR") {
+            push();
+            translate(x, -200, z);
+            fill(200, 100);                              // グレーに塗る
+            for (var i = 0; i < 500; i += 100) {
+                push();
+                translate(0, i, 0);                 // y軸方向に繰り返し配置
+                cylinder(d, 80);                    // 円柱を描画
+                pop();
+            }
+            pop();
+        }
+    }
+</script>
