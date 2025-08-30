@@ -1,0 +1,67 @@
+■インストール
+npx creat-next-app@^15
+
+■ライブラリ
+npm install zod@^3
+npm install prisma@^6
+npm i @prisma/client@^6
+npx shadcn@latest add chart
+
+---------------------------------------------------
+DB (SQLite)設定
+---------------------------------------------------
+
+# 初期化
+npx prisma init
+
+# .env
+DATABASE_URL="file:./dev.db"
+
+# prisma/schema.prisma
+削除： output   = "../src/generated/prisma"
+修正： provider = "sqlite"
+
+# マイグレーション(テーブル作成) 
+# (shema.prisma の内容を元にデータベースのテーブルやカラムを自動で作成・変更
+#  "init"はどんな変更をしたかわかりやすくするためのラベル)
+npx prisma migrate dev --name init
+
+// シード実行(ダミーデータ) 
+npx prisma db seed 
+
+// DBの内容を確認 
+npx prisma studio
+
+// DBリセット 
+npx prisma migrate reset
+
+
+---------------------------------------------------
+DB (MySQL)に切り替え
+---------------------------------------------------
+# .env
+DATABASE_URL="mysql://haku:Hikari89@localhost:3306/testdb"
+
+# prisma/schema.prisma
+削除： output   = "../src/generated/prisma"
+修正： provider = "mysql"
+
+# prisma/migrations ディレクトリを削除
+# prisma/migration_lock.toml を削除
+
+# 再度マイグレーション実行
+npx prisma generate
+npx prisma migrate dev --name init
+
+# 列を追加した場合、prisma/schema.prisma の新規項目に「?」を付ける
+    model Destination_h {
+        place String?
+    }
+
+---------------------------------------------------
+認証
+---------------------------------------------------
+npm install next-auth@beta
+
+# シークレットキー生成　⇒ .env.localにAUTH_SERCET
+npx auth secret
