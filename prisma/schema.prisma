@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+
+generator client {
+  provider = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+}
+
+
+// 行先(Destination:光)
+model Destination_h {
+  id            String @id @default(cuid())
+  name          String
+  order         String
+  row           String
+  place         String?
+  presence      String?
+  destination   String?
+  lunch         String?
+  lunch_default String
+}
+
+// 行先(Destination:市川)
+model Destination_i {
+  id            String @id @default(cuid())
+  name          String
+  order         String
+  row           String
+  presence      String?
+  destination   String?
+}
