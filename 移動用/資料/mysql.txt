@@ -1,0 +1,36 @@
+
+---------------------------------------------------------
+初期設定
+---------------------------------------------------------
+・環境変数にパスを登録
+　(mysql)   C:\Program Files\MySQL\MySQL Server 8.0\bin
+　(mysqlsh) C:\Program Files\MySQL\MySQL Shell 8.0\bin
+・Workbench起動
+・Server -> User and Privilreges -> Add Accuont
+・Login Name, Passwordを設定
+
+
+---------------------------------------------------------
+DB操作
+---------------------------------------------------------
+
+(1)起動
+  コマンドプロンプトに以下を入力
+   mysql -u ユーザー名 -p
+   
+   C:\Users\***** > mysql -u haku -p
+   Enter password: Hikari89
+
+(2)DB作成
+  > create database DB名;   DB作成
+  > show databases;         DB表示
+
+(3)テーブル表示
+  > use DB名;               
+  > show tables;            テーブル表示
+
+(4)終了  
+  > \q
+
+
+
