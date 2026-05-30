@@ -1,0 +1,52 @@
+{
+  "types": [
+    {
+      "grinding_type": "ダイス SDC#180",
+      "column": "1",
+      "header": "ダイス SDC#180",
+      "bgColor": "#E0F7FF",
+      "bgColorStrong": "#B3E9FF"
+    },
+    {
+      "grinding_type": "ハイス SDC#120",
+      "column": "2",
+      "header": "ハイス SDC#120",
+      "bgColor": "#FFF4CC",
+      "bgColorStrong": "#FFE08A"
+    },
+    {
+      "grinding_type": "ハイス SDC#180",
+      "column": "3",
+      "header": "ハイス SDC#180",
+      "bgColor": "#FFE0E0",
+      "bgColorStrong": "#FFB3B3"
+    },
+    {
+      "grinding_type": "ハイス SDC#400",
+      "column": "4",
+      "header": "ハイス SDC#400",
+      "bgColor": "#F0F0F0",
+      "bgColorStrong": "#D9D9D9"
+    },
+    {
+      "grinding_type": "ハイス SDC#800",
+      "column": "5",
+      "header": "ハイス SDC#800",
+      "bgColor": "#D9D9D9",
+      "bgColorStrong": "#B3B3B3"
+    },
+    {
+      "grinding_type": "WC SDC#600",
+      "column": "6",
+      "header": "WC SDC#600",
+      "bgColor": "#E8E0F2",
+      "bgColorStrong": "#CFC3E8"
+    }
+  ],
+  "default": {
+    "column": "7",
+    "header": "その他",
+    "bgColor": "#EEEEEE",
+    "bgColorStrong": "#CCCCCC"
+  }
+}
