@@ -178,24 +178,24 @@ export function WorkrollTable() {
                                                                             status={obj.status}
                                                                         />
                                                                     </td>
-                                                                    <td className="text-center px-1">
+                                                                    <td className="text-center px-1" style={{ borderRight: "1px solid #ddd" }}>
                                                                         <span style={{ fontSize: "1.1rem" }}>
-                                                                            {obj.ra_i ?? ""}
+                                                                            {obj.ra_i === 0 || obj.ra_i == null ? "" : obj.ra_i}
+                                                                        </span>
+                                                                    </td>
+                                                                    <td className="text-center px-1" style={{ borderRight: "1px solid #ddd" }}>
+                                                                        <span style={{ fontSize: "1.1rem" }}>
+                                                                            {obj.diameter_rg === 0 || obj.diameter_rg == null ? "" : obj.diameter_rg}
+                                                                        </span>
+                                                                    </td>
+                                                                    <td className="text-center px-1" style={{ borderRight: "1px solid #ddd" }}>
+                                                                        <span style={{ fontSize: "1.1rem" }}>
+                                                                            {obj.diameter_ml === 0 || obj.diameter_ml == null ? "" : obj.diameter_ml}
                                                                         </span>
                                                                     </td>
                                                                     <td className="text-center px-1">
                                                                         <span style={{ fontSize: "1.1rem" }}>
-                                                                            {obj.diameter_rg ?? ""}
-                                                                        </span>
-                                                                    </td>
-                                                                    <td className="text-center px-1">
-                                                                        <span style={{ fontSize: "1.1rem" }}>
-                                                                            {obj.diameter_ml ?? ""}
-                                                                        </span>
-                                                                    </td>
-                                                                    <td className="text-center px-1">
-                                                                        <span style={{ fontSize: "1.1rem" }}>
-                                                                            {obj.width ?? ""}
+                                                                            {obj.width === 0 || obj.width == null ? "" : obj.width}
                                                                         </span>
                                                                     </td>
                                                                 </tr>
