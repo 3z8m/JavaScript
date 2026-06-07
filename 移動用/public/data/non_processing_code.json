@@ -1,0 +1,12 @@
+[
+  { "code": 21, "label": "始業準備" },
+  { "code": 22, "label": "後始末" },
+  { "code": 70, "label": "砥石交換" },
+  { "code": 71, "label": "RGフィルター濾紙交換" },
+  { "code": 72, "label": "ドレッシング" },
+  { "code": 81, "label": "応援" },
+  { "code": 86, "label": "会議" },
+  { "code": 87, "label": "清掃" },
+  { "code": 91, "label": "その他" },
+  { "code": 94, "label": "食休" }
+]

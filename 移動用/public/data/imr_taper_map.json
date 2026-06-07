@@ -1,0 +1,45 @@
+{
+  "types": [
+    {
+      "taper_code": "1340",
+      "column": "1",
+      "header": "1340",
+      "bgColor": "#E9FFFF",
+      "bgColorStrong": "#BFFAF0"
+    },
+    {
+      "taper_code": "1640",
+      "column": "2",
+      "header": "1640",
+      "bgColor": "#E2FFE2",
+      "bgColorStrong": "#C4F5D8"
+    },
+    {
+      "taper_code": "2040",
+      "column": "3",
+      "header": "2040",
+      "bgColor": "#F0F0F0",
+      "bgColorStrong": "#D9D9D9"
+    },
+    {
+      "taper_code": "2440",
+      "column": "4",
+      "header": "2440",
+      "bgColor": "#E0F7FF",
+      "bgColorStrong": "#B3E9FF"
+    },
+    {
+      "taper_code": "2836",
+      "column": "5",
+      "header": "2836",
+      "bgColor": "#FFE0E0",
+      "bgColorStrong": "#FFB3B3"
+    }
+  ],
+  "default": {
+    "column": "7",
+    "header": "その他",
+    "bgColor": "#EEEEEE",
+    "bgColorStrong": "#CCCCCC"
+  }
+}
